@@ -21,7 +21,6 @@
                    
                    @if(Request::is('*/editar'))
                    		{!! Form::model($immobile, ['method' => 'PATCH', 'route' => ['immobile.update', $immobile->id, 'files'=>'true']])!!}
-
                    @else
                    		{!! Form::open(['url' => 'imoveis/salvar', 'files'=>'true'])!!}	
                    @endif
