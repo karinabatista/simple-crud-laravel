@@ -20,10 +20,10 @@
                    @endif
                    
                    @if(Request::is('*/editar'))
-                   		{!! Form::model($immobile, ['method' => 'PATCH', 'route' => ['immobile.update', $immobile->id]])!!}
+                   		{!! Form::model($immobile, ['method' => 'PATCH', 'route' => ['immobile.update', $immobile->id, 'files'=>'true']])!!}
 
                    @else
-                   		{!! Form::open(['url' => 'imoveis/salvar'])!!}	
+                   		{!! Form::open(['url' => 'imoveis/salvar', 'files'=>'true'])!!}	
                    @endif
                    		{!!Form::label('Título do Imóvel', 'Título do Imóvel') !!}	
                    		{!!Form::input('text', 'immobile_title', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'Título do imóvel']) !!}
@@ -55,7 +55,7 @@
                    		{!!Form::label('Preço do imóvel', 'Preço do imóvel') !!}
                    		{!!Form::input('text', 'immobile_price', null, ['class' => 'form-control', '', 'placeholder' => 'Preço do imóvel']) !!}
 
-                   		{!!Form::label('Área do imóvel', 'Área do imóvel') !!}
+                   		{!!Form::label('Área do imóvel (m²)', 'Área do imóvel (m²)') !!}
                    		{!!Form::input('text', 'immobile_area', null, ['class' => 'form-control', '', 'placeholder' => 'Área do imóvel']) !!}
 
                    		{!!Form::label('Quantidade de dormitórios', 'Quantidade de dormitórios') !!}
@@ -77,7 +77,7 @@
                    		{!!Form::input('text', 'immobile_description', null, ['class' => 'form-control', '', 'placeholder' => 'Descrição do imóvel']) !!}
 
                    		{!!Form::label('Insira a imagem do imóvel', 'Insira a imagem do imóvel') !!}
-                   		{!!Form::input('text', 'immobile_image', null, ['class' => 'form-control', '', 'placeholder' => 'Insira a imagem do imóvel']) !!}
+                   		{!!Form::file('immobile_image', null, ['class' => 'form-control', '', 'placeholder' => 'Imagem do imóvel']) !!}
 
                    		{!!Form::submit('Salvar', ['class' => 'btn btn-primary'])!!}
                    {!!Form::close()!!}

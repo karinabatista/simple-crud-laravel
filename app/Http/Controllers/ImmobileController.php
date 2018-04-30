@@ -18,13 +18,32 @@ class ImmobileController extends Controller
     }
 
     function save(Request $request) {
-    	$immoble = new Immobile();
+    	$immobile = new Immobile();
 
-    	$immoble = $immoble->insert($request->except(['_token']));
+    	if($request->hasFile('immobile_image') && $request->file('immobile_image')->isValid()) {
+    		if($immobile->immobile_image)
+    			$name = $immobile->immobile_image;
+    		else 
+    			$name = $request->immobile_code;
+    		
+    		$extension = $request->immobile_image->extension();
+
+    		$nameFile = '{$name}'.'{$request}';
+    		//$name = time().'_'.$request->immobile_code.;
+
+
+
+    		dd($nameFile);
+
+    		$upload = $request->file('immobile_image')->store('images');
+ 
+    	}
+
+    	$immobile = $immobile->insert($request->except(['_token']));
 
     	//\Session::flash('success', 'Imóvel cadastrado com sucesso!')
 
-    	return redirect('imoveis/novo')->with('success', 'Imóvel cadastrado com sucesso!');
+    	return redirect('imoveis/novo')->with('success', 'Imóvel cadastrado com sucesso!')->back();
     }
 
     function edit($id) {
